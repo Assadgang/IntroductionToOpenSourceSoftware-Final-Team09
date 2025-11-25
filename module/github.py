@@ -67,12 +67,34 @@ def url_tree_dict(_url:str) -> dict:
             node[parts[-1]] = None
     return tree_dict
 
-def url_tree_string(_url, _indent=""):
+def url_tree_string(_url:str) -> str:
     tree_string = ""
     tree_dict = url_tree_dict(_url)
 
-    # TODO
+    stack = [(tree_dict, None, [])]
+    while stack:
+        node, name, depth_info = stack.pop()
 
+        if name is not None:
+            indent = ""
+            for is_last in depth_info[:-1]:
+                indent += "    " if is_last else "│   "
+            is_last = depth_info[-1]
+            branch = "└── " if is_last else "├── "
+            if isinstance(node, dict):
+                tree_string += indent + branch + name + "/\n"
+            else:
+                tree_string += indent + branch + name + "\n"
+
+        if isinstance(node, dict):
+            folders = sorted([k for k, v in node.items() if isinstance(v, dict)])
+            files = sorted([k for k, v in node.items() if v is None])
+            keys = folders + files
+
+            for i in range(len(keys)-1, -1, -1):
+                key = keys[i]
+                is_last_child = (i == len(keys)-1)
+                stack.append((node[key], key, depth_info + [is_last_child]))
     return tree_string
 
 # ---------------------------------------------------
@@ -80,5 +102,5 @@ def url_tree_string(_url, _indent=""):
 # ---------------------------------------------------
 if __name__=="__main__":
     url = "https://github.com/minjunkim0205/Development-RepositorieRadar"
-    tree = url_tree_dict(url)
+    tree = url_tree_string(url)
     print(tree, end="")
