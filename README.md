@@ -52,11 +52,11 @@ Project Root
 │── .vscode/                   # VS Code 환경 설정 파일(프로젝트 내부 환경 관리)
 │
 ├── data/                      # 정적 리소스(이미지, CSS, 샘플 데이터 등) 보관
-│     ├── demo.css             # Streamlit 커스텀 스타일 등
+│     ├── demo.css             # Streamlit 커스텀 스타일 등 (이 파일에 작업 하지 마세요 임시 파일 입니다.)
 │     └── ...
 │
 ├── module/                    # 핵심 기능 모듈 (GitHub API, 분석 로직 등)
-│     ├── demo.py              # API 호출, 전처리, 후처리 등
+│     ├── demo.py              # API 호출, 전처리, 후처리 등 (이 파일에 작업 하지 마세요 임시 파일 입니다.)
 │     └── ...
 │
 ├── pages/                     # Streamlit 멀티 페이지 구성 파일
