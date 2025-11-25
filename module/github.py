@@ -4,7 +4,6 @@
 # Import module
 # ---------------------------------------------------
 import requests
-import json
 from urllib.parse import urlparse
 
 # ---------------------------------------------------
